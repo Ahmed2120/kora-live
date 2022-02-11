@@ -116,7 +116,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                     ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 3,
+                        itemCount: matches.length,
                         itemBuilder: (BuildContext context, int index) {
                           return HeadToHeadMatch(matches[index]);
                         }),

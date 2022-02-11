@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_shot/fixture.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HeadToHeadMatch extends StatelessWidget {
   final SoccerMatch match;
@@ -22,19 +23,23 @@ class HeadToHeadMatch extends StatelessWidget {
               Container(child: Text(match.home.name!), width: 80,),
             ],
           ),
+          Text('${match.goal.home}'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('${match.goal.home}'),
               Column(
                 children: [
-                  Text('VS'),
-                  Text('${match.fixture.status.elapsedTime}'),
+                  CircularPercentIndicator(
+                      radius: 40,
+                    lineWidth: 2,
+                    percent: double.parse('${match.fixture.status.elapsedTime}') / 90,
+                    center: Text('${match.fixture.status.elapsedTime}'),
+                  ),
                 ],
               ),
-              Text('${match.goal.away}'),
             ],
           ),
+          Text('${match.goal.away}'),
           Row(
             children: [
               Container(child: Text(match.away.name!), width: 80,),

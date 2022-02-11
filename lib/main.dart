@@ -69,32 +69,34 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var nameDay = DateFormat('EEEE').format(_dateTime);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // leading: IconButton(
-        //   icon: Icon(Icons.search),
-        //   onPressed: () {},
-        // ),
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.menu),
-        //     onPressed: () {},
-        //   )
-        // ],
-        title: const Text('يلا شوت '),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: FutureBuilder(
+        appBar: AppBar(
+          elevation: 0,
+          // leading: IconButton(
+          //   icon: Icon(Icons.search),
+          //   onPressed: () {},
+          // ),
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(Icons.menu),
+          //     onPressed: () {},
+          //   )
+          // ],
+          title: const Text('يلا شوت '),
+        ),
+        body: FutureBuilder(
           future: SoccerApi().getFixtures(),
           builder: (ctx, snapshot) {
-            List<SoccerMatch> matches = snapshot.data as List<SoccerMatch>;
             print('${snapshot.data}');
-            return snapshot.connectionState == ConnectionState.waiting
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : MatchesScreen(matches);
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              List<SoccerMatch> matches = snapshot.data as List<SoccerMatch>;
+              return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: MatchesScreen(matches));
+            }
           },
         ),
         // child: Column(
@@ -192,9 +194,6 @@ class _MyHomePageState extends State<MyHomePage> {
         //     ),
         //   ],
         // ),
-      ),
-      drawer: MyDrawer()
-    );
+        drawer: MyDrawer());
   }
 }
-
