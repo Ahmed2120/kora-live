@@ -3,7 +3,8 @@ class SoccerMatch{
   Team home;
   Team away;
   Goal goal;
-  SoccerMatch(this.fixture, this.home, this.away, this.goal);
+  League league;
+  SoccerMatch(this.fixture, this.home, this.away, this.goal, this.league);
 
   factory SoccerMatch.fromJson(Map<String, dynamic> json){
     return SoccerMatch(
@@ -11,6 +12,7 @@ class SoccerMatch{
       Team.fromJson(json['teams']['home']),
       Team.fromJson(json['teams']['away']),
       Goal.fromJson(json['goals']),
+      League.fromJson(json['league']),
     );
   }
 }
@@ -34,6 +36,16 @@ class Status{
 
   factory Status.fromJson(Map<String, dynamic> json){
     return Status(json['elapsed'], json['long']);
+  }
+}
+
+class League{
+  String? name;
+  String? logoUrl;
+  League(this.name, this.logoUrl);
+
+  factory League.fromJson(Map<String, dynamic> json){
+    return League(json['name'], json['logo']);
   }
 }
 

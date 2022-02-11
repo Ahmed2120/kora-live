@@ -17,9 +17,8 @@ class SoccerApi{
     if(res.statusCode == 200) {
       final responseData = json.decode(res.body);
       List<dynamic> fixturesMap = responseData['response'];
-      print('fixtures: ${fixturesMap}');
       List<SoccerMatch> fixtures = fixturesMap.map((dynamic e) => SoccerMatch.fromJson(e)).toList();
-      print('fixtures: ${fixtures}');
+      print('fixtures: ${fixtures.length}');
       return fixtures;
     }else{
       print('fixtures: ${res.statusCode}');
