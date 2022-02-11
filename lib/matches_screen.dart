@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:yalla_shot/drawer.dart';
+import 'package:yalla_shot/fixture.dart';
 
 import 'head_to_head_match.dart';
 
 class MatchesScreen extends StatefulWidget {
-  const MatchesScreen({Key? key}) : super(key: key);
+  final List<SoccerMatch> matches;
+
+  const MatchesScreen(this.matches, {Key? key}) : super(key: key);
 
   @override
   State<MatchesScreen> createState() => _MatchesScreenState();
 }
 
 class _MatchesScreenState extends State<MatchesScreen> {
+
+
   DateTime _dateTime = DateTime.now();
   var day = const Duration(days: 1);
 
@@ -34,23 +39,10 @@ class _MatchesScreenState extends State<MatchesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<SoccerMatch> matches = widget.matches;
+
     var nameDay = DateFormat('EEEE').format(_dateTime);
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // leading: IconButton(
-        //   icon: Icon(Icons.search),
-        //   onPressed: () {},
-        // ),
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.menu),
-        //     onPressed: () {},
-        //   )
-        // ],
-        title: Text('يلا شوت '),
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
@@ -126,7 +118,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                         shrinkWrap: true,
                         itemCount: 3,
                         itemBuilder: (BuildContext context, int index) {
-                          return HeadToHeadMatch();
+                          return HeadToHeadMatch(matches[index]);
                         }),
                   ],
                 );
@@ -134,8 +126,6 @@ class _MatchesScreenState extends State<MatchesScreen> {
             ),
           ],
         ),
-      ),
-      drawer: MyDrawer(),
-    );
+      );
   }
 }

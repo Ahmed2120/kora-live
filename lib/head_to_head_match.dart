@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yalla_shot/fixture.dart';
 
 class HeadToHeadMatch extends StatelessWidget {
-  const HeadToHeadMatch({Key? key}) : super(key: key);
+  final SoccerMatch match;
+  const HeadToHeadMatch(this.match, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +17,29 @@ class HeadToHeadMatch extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset('assets/logo.png', width: 20,),
+              Image.network(match.home.logoUrl!, width: 20,),
               const SizedBox(width: 10,),
-              Text('الاهلي'),
+              Container(child: Text(match.home.name!), width: 80,),
             ],
           ),
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('VS'),
-              Text('70'),
+              Text('${match.goal.home}'),
+              Column(
+                children: [
+                  Text('VS'),
+                  Text('${match.fixture.status.elapsedTime}'),
+                ],
+              ),
+              Text('${match.goal.away}'),
             ],
           ),
           Row(
             children: [
-              Text('الزمالك'),
+              Container(child: Text(match.away.name!), width: 80,),
               const SizedBox(width: 10,),
-              Image.asset('assets/logo.png', width: 20,),
+              Image.network(match.away.logoUrl!, width: 20,),
             ],
           ),
         ],

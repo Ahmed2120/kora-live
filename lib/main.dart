@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MatchesScreen(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -89,13 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
           future: SoccerApi().getFixtures(),
           builder: (ctx, snapshot) {
             List<SoccerMatch> matches = snapshot.data as List<SoccerMatch>;
+            print('${snapshot.data}');
             return snapshot.connectionState == ConnectionState.waiting
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : Container(
-              child: Text('${matches[0].home.name}'),
-            );
+                : MatchesScreen(matches);
           },
         ),
         // child: Column(
