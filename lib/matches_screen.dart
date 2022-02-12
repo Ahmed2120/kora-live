@@ -65,9 +65,9 @@ class _MatchesScreenState extends State<MatchesScreen> {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             width: double.infinity,
-            color: Colors.green,
+            color: Colors.grey[200],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -79,7 +79,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                             _dateTime = _dateTime.add(day);
                           });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_left,
                           size: 40,
                         )),
@@ -89,7 +89,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                             _dateTime = _dateTime.subtract(day);
                           });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_right,
                           size: 40,
                         )),

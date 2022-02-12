@@ -5,6 +5,7 @@ import 'package:yalla_shot/drawer.dart';
 import 'package:yalla_shot/fixture.dart';
 import 'package:yalla_shot/providers/matches.dart';
 
+import 'loading_screen.dart';
 import 'matches_screen.dart';
 
 void main() {
@@ -89,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             print('${snapshot.data}');
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: LoadingScreen(),
               );
             } else {
               List<SoccerMatch> matches = snapshot.data as List<SoccerMatch>;
