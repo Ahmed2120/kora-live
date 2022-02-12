@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:yalla_shot/fixture.dart';
 
+import '../http_exception.dart';
+
 class SoccerApi{
   final String url = 'https://v3.football.api-sports.io/fixtures?live=all';
   final Map<String, String> headers = {
@@ -12,10 +14,14 @@ class SoccerApi{
   };
 
   Future<List> getFixtures() async{
+    try{
     final res = await http.get(Uri.parse(url), headers: headers);
     print('fixtures: ${res.statusCode}');
     if(res.statusCode == 200) {
       final responseData = json.decode(res.body);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
+      }
       List<dynamic> fixturesMap = responseData['response'];
       List<SoccerMatch> fixtures = fixturesMap.map((dynamic e) => SoccerMatch.fromJson(e)).toList();
       print('fixtures: ${fixtures.length}');
@@ -23,6 +29,9 @@ class SoccerApi{
     }else{
       print('fixtures: ${res.statusCode}');
       return [];
+    }
+    }catch(e){
+      rethrow;
     }
   }
 }

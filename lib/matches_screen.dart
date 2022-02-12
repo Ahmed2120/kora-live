@@ -53,9 +53,10 @@ class _MatchesScreenState extends State<MatchesScreen> {
     for (var element in matches) {
       leagues.add(element.league.name!);
     }
-    leagues = [...{...leagues}];
-    print('${leagues.length}');
-    for(var i in leagues){
+    leagues = [
+      ...{...leagues}
+    ];
+    for (var i in leagues) {
       print('${i}');
     }
 
@@ -67,7 +68,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             width: double.infinity,
-            color: Colors.grey[200],
+            color: Colors.grey[300],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -126,8 +127,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
             padding: const EdgeInsets.all(15),
             itemBuilder: (BuildContext context, int index) {
               final matchesByLeague = matches
-                  .where((element) =>
-                      element.league.name == leagues[index])
+                  .where((element) => element.league.name == leagues[index])
                   .toList();
               return Column(
                 children: [
@@ -139,9 +139,19 @@ class _MatchesScreenState extends State<MatchesScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(matchesByLeague[0].league.logoUrl!, width: 20,),
-                        const SizedBox(width: 10,),
-                        Text(leagues[index]),
+                        matchesByLeague[0].league.logoUrl == null
+                            ? Image.asset('assets/logo.png')
+                            : Image.network(
+                                matchesByLeague[0].league.logoUrl!,
+                                width: 25,
+                              ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          leagues[index],
+                          style: const TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                   ),

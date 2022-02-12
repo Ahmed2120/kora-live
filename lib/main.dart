@@ -37,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   DateTime _dateTime = DateTime.now();
   var day = const Duration(days: 1);
+  bool _isLoading = false;
 
   String getDayName() {
     var nameDay = DateFormat('EEEE').format(_dateTime);
@@ -65,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     return name;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,101 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
         ),
-        // child: Column(
-        //   children: [
-        //     Container(
-        //       padding: EdgeInsets.all(12),
-        //       width: double.infinity,
-        //       color: Colors.green,
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Row(
-        //             children: [
-        //               IconButton(
-        //                   onPressed: () {
-        //                     setState(() {
-        //                       _dateTime = _dateTime.add(day);
-        //
-        //                     });
-        //                   }, icon: Icon(Icons.arrow_left, size: 40,)),
-        //               IconButton(
-        //                   onPressed: () {
-        //                     setState(() {
-        //                       _dateTime = _dateTime.subtract(day);
-        //                     });
-        //                   }, icon: Icon(Icons.arrow_right, size: 40,)),
-        //             ],
-        //           ),
-        //           Text('مباريات ${getDayName()}'),
-        //           Row(
-        //             children: [
-        //               Text('${_dateTime.year}/${_dateTime.month}/${_dateTime
-        //                   .day}'),
-        //               IconButton(
-        //                   onPressed: () {
-        //                     showDatePicker(
-        //                         context: context,
-        //                         initialDate: _dateTime,
-        //                         firstDate: DateTime(DateTime
-        //                             .now()
-        //                             .year - 5),
-        //                         lastDate: DateTime(DateTime
-        //                             .now()
-        //                             .year + 5))
-        //                         .then((date) {
-        //                       setState(() {
-        //                         _dateTime = date!;
-        //                       });
-        //                     });
-        //                   },
-        //                   icon: Icon(Icons.date_range)),
-        //             ],
-        //           )
-        //         ],
-        //       ),
-        //     ),
-        //     ListView.builder(
-        //       physics: const NeverScrollableScrollPhysics(),
-        //       shrinkWrap: true,
-        //       itemCount: 4,
-        //       padding: const EdgeInsets.all(15),
-        //       itemBuilder: (BuildContext context, int index) {
-        //         return Column(
-        //           children: [
-        //             Container(
-        //               alignment: Alignment.center,
-        //               width: double.infinity,
-        //               padding: const EdgeInsets.all(8),
-        //               decoration: BoxDecoration(color: Colors.grey),
-        //               child: Text('الدوري الانجليزي'),
-        //             ),
-        //             ListView.builder(
-        //                 physics: const NeverScrollableScrollPhysics(),
-        //                 shrinkWrap: true,
-        //                 itemCount: 3,
-        //                 itemBuilder: (BuildContext context, int index) {
-        //                   return Container(
-        //                     width: double.infinity,
-        //                     margin: EdgeInsets.only(bottom: 8),
-        //                     padding: EdgeInsets.all(8),
-        //                     decoration: BoxDecoration(color: Colors.grey[200]),
-        //                     child: Row(
-        //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                       children: [
-        //                         Text('الاهلي'),
-        //                         Text('VS'),
-        //                         Text('الزمالك'),
-        //                       ],
-        //                     ),
-        //                   );
-        //                 }),
-        //           ],
-        //         );
-        //       },
-        //     ),
-        //   ],
-        // ),
         drawer: MyDrawer());
   }
 }
