@@ -6,6 +6,7 @@ import 'package:yalla_shot/fixture.dart';
 import 'package:yalla_shot/providers/matches.dart';
 
 import 'loading_screen.dart';
+import 'match_detail.dart';
 import 'matches_screen.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MatchDetail(),
     );
   }
 }
