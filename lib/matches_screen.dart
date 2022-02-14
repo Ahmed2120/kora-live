@@ -4,6 +4,7 @@ import 'package:yalla_shot/drawer.dart';
 import 'package:yalla_shot/fixture.dart';
 
 import 'head_to_head_match.dart';
+import 'match_detail.dart';
 
 class MatchesScreen extends StatefulWidget {
   final List<SoccerMatch> matches;
@@ -114,7 +115,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                             });
                           });
                         },
-                        icon: Icon(Icons.date_range)),
+                        icon: const Icon(Icons.date_range)),
                   ],
                 )
               ],

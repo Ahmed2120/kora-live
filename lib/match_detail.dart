@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:yalla_shot/fixture.dart';
 
 class MatchDetail extends StatelessWidget {
-  const MatchDetail({Key? key}) : super(key: key);
+
+  final SoccerMatch match;
+  const MatchDetail(this.match, {Key? key}) : super(key: key);
 
   // final SoccerMatch match;
   //
@@ -10,11 +13,13 @@ class MatchDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime _date = DateTime.parse(match.fixture.date!);
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            floating: true,
             expandedHeight: 300,
             collapsedHeight: 100,
             //toolbarHeight: 200,
@@ -22,21 +27,40 @@ class MatchDetail extends StatelessWidget {
             elevation: 0,
             //titleSpacing: 20,
             flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset('assets/stadium.jpg', fit: BoxFit.cover, color: Colors.blueGrey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,),
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Image.asset('assets/logo.png', width: 50,),
-                      Text('الاهلي')
+                      Image.network(match.home.logoUrl!, width: 50,),
+                      SizedBox(
+                        child: Text(match.home.name!, style: const TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+                        width: 100,
+                      ),
                     ],
                   ),
+                  Text('${match.goal.home}'),
+                  CircularPercentIndicator(
+                    radius: 30,
+                    lineWidth: 2,
+                    percent: match.fixture.status.elapsedTime! > 90
+                        ? 1
+                        : double.parse('${match.fixture.status.elapsedTime}') /
+                        90,
+                    center: Text('${match.fixture.status.elapsedTime}', style: TextStyle(color: Colors.white),),
+                  ),
+                  Text('${match.goal.away}'),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Image.asset('assets/logo.png', width: 50,),
-                      Text('الزمالك')
+                      Image.network(match.away.logoUrl!, width: 50,),
+                      SizedBox(
+                        child: Text(match.away.name!, style: const TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+                        width: 100,
+                      ),
                     ],
                   ),
                 ],
@@ -47,7 +71,7 @@ class MatchDetail extends StatelessWidget {
           SliverList(delegate: SliverChildListDelegate(
             [
               Container(
-                margin: EdgeInsets.only(top: 12, left: 12, right: 12),
+                margin: const EdgeInsets.only(top: 18, left: 12, right: 18),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -77,10 +101,10 @@ class MatchDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              DetailItem(title: 'title', titleData: 'title data', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'title', titleData: 'title data', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'title', titleData: 'title data', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'title', titleData: 'title data', icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'League', titleData: match.league.name!, icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Round', titleData: match.league.round!, icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Stadium', titleData: match.fixture.venue.name!, icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
             ]
           ))
         ],

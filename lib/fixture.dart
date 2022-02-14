@@ -19,13 +19,14 @@ class SoccerMatch{
 
 class Fixture{
   int id;
-  String date;
+  String? date;
   Status status;
+  Venue venue;
 
-  Fixture(this.id, this.date, this.status);
+  Fixture(this.id, this.date, this.status, this.venue);
   
   factory Fixture.fromJson(Map<String, dynamic> json){
-    return Fixture(json['id'], json['date'], Status.fromJson(json['status']));
+    return Fixture(json['id'], json['date'], Status.fromJson(json['status']), Venue.fromJson(json['venue']));
   }
 }
 
@@ -39,13 +40,23 @@ class Status{
   }
 }
 
+class Venue{
+  String? name;
+  Venue(this.name);
+
+  factory Venue.fromJson(Map<String, dynamic> json){
+    return Venue(json['name']);
+  }
+}
+
 class League{
   String? name;
   String? logoUrl;
-  League(this.name, this.logoUrl);
+  String? round;
+  League(this.name, this.logoUrl, this.round);
 
   factory League.fromJson(Map<String, dynamic> json){
-    return League(json['name'], json['logo']);
+    return League(json['name'], json['logo'], json['round']);
   }
 }
 
