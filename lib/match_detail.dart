@@ -14,6 +14,7 @@ class MatchDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime _date = DateTime.parse(match.fixture.date!);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: CustomScrollView(
@@ -28,42 +29,47 @@ class MatchDetail extends StatelessWidget {
             //titleSpacing: 20,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset('assets/stadium.jpg', fit: BoxFit.cover, color: Colors.blueGrey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Image.network(match.home.logoUrl!, width: 50,),
-                      SizedBox(
-                        child: Text(match.home.name!, style: const TextStyle(fontSize: 15),textAlign: TextAlign.center,),
-                        width: 100,
-                      ),
-                    ],
-                  ),
-                  Text('${match.goal.home}'),
-                  CircularPercentIndicator(
-                    radius: 30,
-                    lineWidth: 2,
-                    percent: match.fixture.status.elapsedTime! > 90
-                        ? 1
-                        : double.parse('${match.fixture.status.elapsedTime}') /
-                        90,
-                    center: Text('${match.fixture.status.elapsedTime}', style: TextStyle(color: Colors.white),),
-                  ),
-                  Text('${match.goal.away}'),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Image.network(match.away.logoUrl!, width: 50,),
-                      SizedBox(
-                        child: Text(match.away.name!, style: const TextStyle(fontSize: 15),textAlign: TextAlign.center,),
-                        width: 100,
-                      ),
-                    ],
-                  ),
-                ],
+              title: Container(
+                width: double.infinity,
+                height: size.height * 0.16,
+                // height: 110,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.network(match.home.logoUrl!, width: 50,),
+                        SizedBox(
+                          child: Text(match.home.name!, style: const TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+                          width: 100,
+                        ),
+                      ],
+                    ),
+                    Text('${match.goal.home}'),
+                    CircularPercentIndicator(
+                      radius: 30,
+                      lineWidth: 2,
+                      percent: match.fixture.status.elapsedTime! > 90
+                          ? 1
+                          : double.parse('${match.fixture.status.elapsedTime}') /
+                          90,
+                      center: Text('${match.fixture.status.elapsedTime}', style: TextStyle(color: Colors.white),),
+                    ),
+                    Text('${match.goal.away}'),
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.network(match.away.logoUrl!, width: 50,),
+                        SizedBox(
+                          child: Text(match.away.name!, style: const TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+                          width: 100,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               centerTitle: true,
             ),
@@ -126,7 +132,7 @@ class DetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       color: Colors.white,
       elevation: 2,
       child: Container(
