@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:yalla_shot/drawer.dart';
-import 'package:yalla_shot/fixture.dart';
+import 'package:yalla_shot/widget/drawer.dart';
+import 'package:yalla_shot/widget/fixture.dart';
 import 'package:yalla_shot/providers/matches.dart';
 
-import 'loading_screen.dart';
-import 'match_detail.dart';
-import 'matches_screen.dart';
+import 'screens/loading_screen.dart';
+import 'screens/match_detail.dart';
+import 'screens/matches_screen.dart';
 
 void main() {
   runApp(const MyApp());

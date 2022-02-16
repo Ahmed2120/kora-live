@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:yalla_shot/fixture.dart';
+import 'package:yalla_shot/widget/fixture.dart';
 
 import '../http_exception.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:yalla_shot/fixture.dart';
+import 'package:yalla_shot/widget/fixture.dart';
 
 class MatchDetail extends StatelessWidget {
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:yalla_shot/drawer.dart';
-import 'package:yalla_shot/fixture.dart';
+import 'package:yalla_shot/widget/drawer.dart';
+import 'package:yalla_shot/widget/fixture.dart';
 
-import 'head_to_head_match.dart';
+import '../widget/head_to_head_match.dart';
 import 'match_detail.dart';
 
 class MatchesScreen extends StatefulWidget {

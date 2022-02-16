@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yalla_shot/fixture.dart';
+import 'package:yalla_shot/widget/fixture.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import 'match_detail.dart';
+import '../screens/match_detail.dart';
 
 class HeadToHeadMatch extends StatelessWidget {
   final SoccerMatch match;
