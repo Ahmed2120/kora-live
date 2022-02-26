@@ -15,12 +15,20 @@ class HeadToHeadMatch extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       child: InkWell(
-        onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MatchDetail(match))),
+        onTap: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => MatchDetail(match))),
         splashColor: Colors.blue,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(color: Colors.grey[200]!.withOpacity(0.8)),
+          decoration: BoxDecoration(
+            color: Colors.grey[200]!.withOpacity(0.8),
+            boxShadow: [BoxShadow(
+              offset: const Offset(0, 2),
+              color: Colors.grey.withOpacity(0.5),
+              blurRadius: 1
+            )]
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -34,26 +42,37 @@ class HeadToHeadMatch extends StatelessWidget {
                     width: 10,
                   ),
                   SizedBox(
-                    child: Text(match.home.name!, style: const TextStyle(fontSize: 15),),
+                    child: Text(
+                      match.home.name!,
+                      style: const TextStyle(fontSize: 15),
+                    ),
                     width: 80,
                   ),
                 ],
               ),
-              Text('${match.goal.home}', style: const TextStyle(fontSize: 17),),
+              Text(
+                '${match.goal.home}',
+                style: const TextStyle(fontSize: 17),
+              ),
               CircularPercentIndicator(
                 radius: 40,
                 lineWidth: 2,
                 percent: match.fixture.status.elapsedTime! > 90
                     ? 1
-                    : double.parse('${match.fixture.status.elapsedTime}') /
-                        90,
+                    : double.parse('${match.fixture.status.elapsedTime}') / 90,
                 center: Text('$elpased'),
               ),
-              Text('${match.goal.away}', style: const TextStyle(fontSize: 17),),
+              Text(
+                '${match.goal.away}',
+                style: const TextStyle(fontSize: 17),
+              ),
               Row(
                 children: [
                   SizedBox(
-                    child: Text(match.away.name!, style: const TextStyle(fontSize: 15),),
+                    child: Text(
+                      match.away.name!,
+                      style: const TextStyle(fontSize: 15),
+                    ),
                     width: 80,
                   ),
                   const SizedBox(

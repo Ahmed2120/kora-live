@@ -22,7 +22,7 @@ class MatchDetail extends StatelessWidget {
           SliverAppBar(
             floating: true,
             expandedHeight: 300,
-            collapsedHeight: 100,
+            collapsedHeight: 200,
             //toolbarHeight: 200,
             pinned: true,
             elevation: 0,
@@ -110,6 +110,10 @@ class MatchDetail extends StatelessWidget {
               DetailItem(title: 'League', titleData: match.league.name!, icon: Icon(Icons.height), function: (){},),
               DetailItem(title: 'Round', titleData: match.league.round!, icon: Icon(Icons.height), function: (){},),
               DetailItem(title: 'Stadium', titleData: match.fixture.venue.name!, icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
               DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
             ]
           ))

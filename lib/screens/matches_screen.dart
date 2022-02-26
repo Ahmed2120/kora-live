@@ -49,6 +49,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final List<SoccerMatch> matches = widget.matches;
     List<String> leagues = [];
     for (var element in matches) {
@@ -62,70 +63,70 @@ class _MatchesScreenState extends State<MatchesScreen> {
     }
 
     var nameDay = DateFormat('EEEE').format(_dateTime);
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            width: double.infinity,
-            color: Colors.grey[300],
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(12),
+          width: double.infinity,
+          color: Colors.grey[300],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _dateTime = _dateTime.add(day);
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.arrow_left,
+                        size: 40,
+                      )),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _dateTime = _dateTime.subtract(day);
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.arrow_right,
+                        size: 40,
+                      )),
+                ],
+              ),
+              Text('مباريات ${getDayName()}'),
+              Row(
+                children: [
+                  Text('${_dateTime.year}/${_dateTime.month}/${_dateTime.day}'),
+                  IconButton(
+                      onPressed: () {
+                        showDatePicker(
+                                context: context,
+                                initialDate: _dateTime,
+                                firstDate: DateTime(DateTime.now().year - 5),
+                                lastDate: DateTime(DateTime.now().year + 5))
+                            .then((date) {
                           setState(() {
-                            _dateTime = _dateTime.add(day);
+                            _dateTime = date!;
                           });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_left,
-                          size: 40,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _dateTime = _dateTime.subtract(day);
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_right,
-                          size: 40,
-                        )),
-                  ],
-                ),
-                Text('مباريات ${getDayName()}'),
-                Row(
-                  children: [
-                    Text(
-                        '${_dateTime.year}/${_dateTime.month}/${_dateTime.day}'),
-                    IconButton(
-                        onPressed: () {
-                          showDatePicker(
-                                  context: context,
-                                  initialDate: _dateTime,
-                                  firstDate: DateTime(DateTime.now().year - 5),
-                                  lastDate: DateTime(DateTime.now().year + 5))
-                              .then((date) {
-                            setState(() {
-                              _dateTime = date!;
-                            });
-                          });
-                        },
-                        icon: const Icon(Icons.date_range)),
-                  ],
-                )
-              ],
-            ),
+                        });
+                      },
+                      icon: const Icon(Icons.date_range)),
+                ],
+              )
+            ],
           ),
-          ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
+        ),
+        Container(
+          padding: const EdgeInsets.all(15),
+          height: size.height - 150,
+          child: ListView.builder(
+            // physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: leagues.length,
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(0),
             itemBuilder: (BuildContext context, int index) {
               final matchesByLeague = matches
                   .where((element) => element.league.name == leagues[index])
@@ -136,7 +137,10 @@ class _MatchesScreenState extends State<MatchesScreen> {
                     alignment: Alignment.center,
                     width: double.infinity,
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(color: Colors.grey),
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -167,8 +171,8 @@ class _MatchesScreenState extends State<MatchesScreen> {
               );
             },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
