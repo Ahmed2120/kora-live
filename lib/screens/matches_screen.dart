@@ -83,6 +83,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                       icon: const Icon(
                         Icons.arrow_left,
                         size: 40,
+                        color: Color(0xFF456789),
                       )),
                   IconButton(
                       onPressed: () {
@@ -93,6 +94,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                       icon: const Icon(
                         Icons.arrow_right,
                         size: 40,
+                        color: Color(0xFF456789),
                       )),
                 ],
               ),
@@ -113,7 +115,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                           });
                         });
                       },
-                      icon: const Icon(Icons.date_range)),
+                      icon: const Icon(Icons.date_range, color: Color(0xFF456789),)),
                 ],
               )
             ],
@@ -138,7 +140,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(8),
                     decoration: const BoxDecoration(
-                      color: Colors.grey,
+                      color: Color(0xFF577495),
 
                     ),
                     child: Row(
@@ -155,7 +157,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                         ),
                         Text(
                           leagues[index],
-                          style: const TextStyle(fontSize: 15),
+                          style: const TextStyle(fontSize: 15, color: Colors.white),
                         ),
                       ],
                     ),

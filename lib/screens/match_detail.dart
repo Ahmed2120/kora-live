@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:yalla_shot/widget/fixture.dart';
@@ -22,13 +24,13 @@ class MatchDetail extends StatelessWidget {
           SliverAppBar(
             floating: true,
             expandedHeight: 300,
-            collapsedHeight: 200,
+            collapsedHeight: 300,
             //toolbarHeight: 200,
             pinned: true,
             elevation: 0,
             //titleSpacing: 20,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset('assets/stadium.jpg', fit: BoxFit.cover, color: Colors.blueGrey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,),
+              background: Image.asset('assets/icons/stadium.jpg', fit: BoxFit.cover, color: Colors.blueGrey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,),
               title: Container(
                 width: double.infinity,
                 height: size.height * 0.16,
@@ -107,14 +109,10 @@ class MatchDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              DetailItem(title: 'League', titleData: match.league.name!, icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Round', titleData: match.league.round!, icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Stadium', titleData: match.fixture.venue.name!, icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
-              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.height), function: (){},),
+              DetailItem(title: 'League', titleData: match.league.name!, icon: Image.asset('assets/icons/cup.png', color: Color(0xFF456789),), function: (){},),
+              DetailItem(title: 'Round', titleData: match.league.round!, icon: Image.asset('assets/icons/round.png', color: Color(0xFF456789),), function: (){},),
+              DetailItem(title: 'Stadium', titleData: match.fixture.venue.name!, icon: Image.asset('assets/icons/st-icon.png', color: Color(0xFF456789),), function: (){},),
+              DetailItem(title: 'Date', titleData: '${_date.day} - ${_date.month} - ${_date.year}', icon: Icon(Icons.date_range, color: Color(0xFF456789), size: 50,), function: (){},),
             ]
           ))
         ],
@@ -126,7 +124,7 @@ class MatchDetail extends StatelessWidget {
 class DetailItem extends StatelessWidget {
   final String title;
   final String titleData;
-  final Icon icon;
+  final Widget icon;
   final Function function;
 
   const DetailItem({

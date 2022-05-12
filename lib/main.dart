@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: const Color(0xFF456789),
+          ),
+          fontFamily: 'Montserrat'),
       home: const MyHomePage(),
     );
   }
@@ -68,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return name;
   }
 
-
   @override
   Widget build(BuildContext context) {
     var nameDay = DateFormat('EEEE').format(_dateTime);
@@ -98,8 +99,16 @@ class _MyHomePageState extends State<MyHomePage> {
             } else {
               List<SoccerMatch> matches = snapshot.data as List<SoccerMatch>;
               return SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: MatchesScreen(matches));
+                scrollDirection: Axis.vertical,
+                child: RefreshIndicator(
+                  child: MatchesScreen(matches),
+                  onRefresh: () async {
+                    matches =
+                        await SoccerApi().getFixtures() as List<SoccerMatch>;
+                    setState(() {});
+                  },
+                ),
+              );
             }
           },
         ),
