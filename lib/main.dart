@@ -86,7 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
           //     onPressed: () {},
           //   )
           // ],
-          title: const Text('يلا شوت '),
+          title: const Text('KORA LIVE'),
+          centerTitle: true,
         ),
         body: FutureBuilder(
           future: SoccerApi().getFixtures(),
@@ -96,7 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
               return const Center(
                 child: LoadingScreen(),
               );
-            } else {
+            } else if(snapshot.hasError){
+              return Center(
+                child: Text('${snapshot.error}'),
+              );
+            }
+            else {
               List<SoccerMatch> matches = snapshot.data as List<SoccerMatch>;
               return SingleChildScrollView(
                 scrollDirection: Axis.vertical,

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yalla_shot">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="yalla_shot"
         android:icon="@mipmap/ic_launcher">
